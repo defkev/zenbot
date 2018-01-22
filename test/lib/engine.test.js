@@ -133,7 +133,11 @@ function createEngine(currency_amount, buy_pct, buy_max_amt, order_type, buy_spy
 	  }
 
 	var fake_return = {
-		"conf": {},
+		"conf": {
+			output: {
+				api: {}
+			}
+		},
 		"exchanges.test_exchange" : {
 			getProducts: function() { return [fake_product] },
 			getQuote: function(product, callback){ callback(null, { bid: fake_bid, ask: fake_ask}) },
