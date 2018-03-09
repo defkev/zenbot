@@ -672,8 +672,9 @@ module.exports = function (program, conf) {
                 period._id = period.id
                 periods.save(period, function (err) {
                   if (err) {
-                    console.error('\n' + moment().format('YYYY-MM-DD HH:mm:ss') + ' - error saving my_trade')
+                    console.error('\n' + moment().format('YYYY-MM-DD HH:mm:ss') + ' - error saving period')
                     console.error(err)
+                    console.error(period)
                   }
                 })
               }
