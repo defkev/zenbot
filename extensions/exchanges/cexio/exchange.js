@@ -83,9 +83,11 @@ module.exports = function cexio (conf) {
       var client = publicClient()
       var pair = joinProduct(opts.product_id)
       client.trade_history(pair, args, function (err, body) {
-        if (so.debug && typeof body === 'string' && body.match(/error/) || !body.map) console.log(('\ngetTrades ' + body).red)
         if (err) return cb(err)
-        if (typeof body === 'string' && body.match(/error/) || !body.map) return retry('getTrades', func_args)
+        if (typeof body === 'string' && body.match(/error/) || !body.map) {
+          if (so.debug) console.log(('\ngetTrades ' + body).red)
+          return retry('getTrades', func_args)
+        }
         var trades = body.map(function (trade) {
           return {
             trade_id: Number(trade.tid),
